@@ -61,10 +61,12 @@ class MyListener implements Listener {
     void onSignCreate(SignChangeEvent e) {
         Player p = e.getPlayer();
         String[] text = e.getLines();
-        if (text[0].equals(ChatColor.BLUE + "[SignShop]")) {
+        if (text[0].equals("[SignShop]")) {
             if (p.hasPermission("signshop.make")) {
                 e.setLine(0, ChatColor.BLUE + "[SignShop]");
                 ((Sign) e.getBlock()).update();
+            }else{
+                e.getPlayer().sendMessage("[SignShop] Not enough permissions to create sign shop.");
             }
         }
     }

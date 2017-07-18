@@ -21,16 +21,15 @@ public class Main extends JavaPlugin{
 
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
-            System.out.println("First one!");
+            System.out.println("[SignShop] Vault is not installed!");
             return false;
         }
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
-            System.out.println("Second one!");
+            System.out.println("[SignShop] No Economy plugin provided!");
             return false;
         }
         econ = rsp.getProvider();
-        System.out.println("Last one?");
         return econ != null;
     }
 }

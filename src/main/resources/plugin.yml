@@ -3,3 +3,6 @@ author: MGlolenstine
 version: 1.0
 main: xyz.mglolenstine.signshop.Main
 depend: [Vault]
+permissions:
+  signshop.make:
+    default: op
