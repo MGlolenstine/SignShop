@@ -1,8 +1,6 @@
 package xyz.mglolenstine.signshop;
 
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.permission.Permission;
-import org.bukkit.ChatColor;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -23,13 +21,16 @@ public class Main extends JavaPlugin{
 
     private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            System.out.println("First one!");
             return false;
         }
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
+            System.out.println("Second one!");
             return false;
         }
         econ = rsp.getProvider();
+        System.out.println("Last one?");
         return econ != null;
     }
 }
