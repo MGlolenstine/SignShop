@@ -15,9 +15,9 @@ public class Main extends JavaPlugin{
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(new MyListener(), this);
         if(setupEconomy()){
-            System.out.println(ChatColor.GREEN+"[SignShop] Vault has been successfully initialized");
+            System.out.println("[SignShop] Vault has been successfully initialized");
         }else{
-            System.out.println(ChatColor.RED+"[SignShop] Vault hasn't been successfully initialized");
+            System.out.println("[SignShop] Vault hasn't been successfully initialized");
         }
     }
 
