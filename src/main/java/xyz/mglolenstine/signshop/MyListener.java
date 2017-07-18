@@ -28,24 +28,19 @@ class MyListener implements Listener {
                 Material mat = Material.getMaterial(text[1]);
                 String[] prices = text[2].split(":");
                 int[] price = {Integer.parseInt(prices[0]), Integer.parseInt(prices[1])};
+                for(int i : price) {
+                    if (i < 0){
+                        e.getPlayer().sendMessage("[SignShop] This shop isn't configured correctly, please contact administrators.");
+                        return;
+                    }
+                }
                 int amount = Integer.parseInt(text[3]);
                 Player op = e.getPlayer();
-                //OfflinePlayer op = Bukkit.getOfflinePlayer(e.getPlayer().getUniqueId());
-                //if(op == null){
-                /*if (!econ.hasAccount(op)) {
-                    econ.createPlayerAccount(op);
-                }*/
-                //}else {
-                //    if (!econ.hasAccount(op)) {
-                //        econ.createPlayerAccount(op);
-                //    }
-                //}
                 econ.createPlayerAccount(op);
                 if (e.getAction() == Action.LEFT_CLICK_BLOCK) {
                     //Buy action
                     if (econ.getBalance(op) >= price[0]) {
                         e.getPlayer().getInventory().addItem(new ItemStack(mat, amount));
-                        e.getPlayer().sendMessage("op: "+op+"; price[0]: "+price);
                         econ.withdrawPlayer(op, price[0]);
                         e.getPlayer().sendMessage("[SignShop] Item has been bought.");
                     } else {
@@ -78,7 +73,7 @@ class MyListener implements Listener {
             }
         }
     }
-    boolean contains(Player p, Material mat, int amount){
+    private boolean contains(Player p, Material mat, int amount){
         int count = 0;
         for(int i = 0; i < p.getInventory().getSize(); i++){
             if(p.getInventory().getItem(i) != null) {
@@ -93,7 +88,7 @@ class MyListener implements Listener {
         return false;
     }
 
-    void remove(Player p, ItemStack is){
+    private void remove(Player p, ItemStack is){
         int amount = is.getAmount();
         int count = 0;
         Material mat = is.getType();
