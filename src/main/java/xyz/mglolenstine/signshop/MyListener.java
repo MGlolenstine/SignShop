@@ -65,8 +65,7 @@ class MyListener implements Listener {
         if (text[0].equals("[SignShop]")) {
             if (p.hasPermission("signshop.make")) {
                 e.setLine(0, ChatColor.BLUE + "[SignShop]");
-                Block b = e.getBlock();
-                ((Sign) b).update();
+                ((Sign) e.getBlock().getState()).update();
             }else{
                 e.getPlayer().sendMessage("[SignShop] Not enough permissions to create sign shop.");
             }
