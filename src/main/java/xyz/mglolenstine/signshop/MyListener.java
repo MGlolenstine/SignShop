@@ -60,6 +60,7 @@ class MyListener implements Listener {
     @EventHandler
     void onSignCreate(SignChangeEvent e) {
         Player p = e.getPlayer();
+
         String[] text = e.getLines();
         if (text[0].equals("[SignShop]")) {
             if (p.hasPermission("signshop.make")) {
