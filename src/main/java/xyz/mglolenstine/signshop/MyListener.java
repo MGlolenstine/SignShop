@@ -17,8 +17,8 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Created by LifEorDeatH on 17.7.2017.
  */
-public class MyListener implements Listener {
-    public Economy econ = Main.econ;
+class MyListener implements Listener {
+    private Economy econ = Main.econ;
 
     @EventHandler
     void onSignClick(PlayerInteractEvent e) {
@@ -39,14 +39,16 @@ public class MyListener implements Listener {
                     if (econ.getBalance(op) >= price[0]) {
                         e.getPlayer().getInventory().addItem(new ItemStack(mat, amount));
                         econ.withdrawPlayer(op, price[0]);
+                        e.getPlayer().sendMessage("Item has been bought.");
                     }else{
                         e.getPlayer().sendMessage(ChatColor.RED+"[SignShop] You don't have enough money.");
                     }
-                } else (e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+                } else if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
                     //Sell action
                     if (e.getPlayer().getInventory().contains(mat, amount)) {
                         e.getPlayer().getInventory().remove(new ItemStack(mat, amount));
                         econ.depositPlayer(op, price[1]);
+                        e.getPlayer().sendMessage("Item has been sold.");
                     }else{
                         e.getPlayer().sendMessage(ChatColor.RED+"[SignShop] You don't have enough items to sell.");
                     }
