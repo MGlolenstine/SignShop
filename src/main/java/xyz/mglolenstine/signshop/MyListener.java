@@ -39,7 +39,7 @@ class MyListener implements Listener {
                     if (econ.getBalance(op) >= price[0]) {
                         e.getPlayer().getInventory().addItem(new ItemStack(mat, amount));
                         econ.withdrawPlayer(op, price[0]);
-                        e.getPlayer().sendMessage("Item has been bought.");
+                        e.getPlayer().sendMessage("[SignShop] Item has been bought.");
                     }else{
                         e.getPlayer().sendMessage(ChatColor.RED+"[SignShop] You don't have enough money.");
                     }
@@ -48,7 +48,7 @@ class MyListener implements Listener {
                     if (e.getPlayer().getInventory().contains(mat, amount)) {
                         e.getPlayer().getInventory().remove(new ItemStack(mat, amount));
                         econ.depositPlayer(op, price[1]);
-                        e.getPlayer().sendMessage("Item has been sold.");
+                        e.getPlayer().sendMessage("[SignShop] Item has been sold.");
                     }else{
                         e.getPlayer().sendMessage(ChatColor.RED+"[SignShop] You don't have enough items to sell.");
                     }
